@@ -109,17 +109,21 @@ def go(config: DictConfig):
                     "stratify_by": config["modeling"]["stratify_by"],
                     "rf_config": rf_config,
                     "max_tfidf_features": config['modeling']['max_tfidf_features'],
-                    "output_artifact": config['etl']['min_price']
+                    "output_artifact": 'model_export'
                 },
             )
 
         if "test_regression_model" in active_steps:
+            _ = mlflow.run(
+                f"{config['main']['components_repository']}/test_regression_model", 
+                "main",
+                version='main',
+                parameters={
+                    "mlflow_model": "model_export:prod",
+                    "test_dataset": "test_data.csv:latest",
+                },
+            )
 
-            ##################
-            # Implement here #
-            ##################
-
-            pass
 
 
 if __name__ == "__main__":
