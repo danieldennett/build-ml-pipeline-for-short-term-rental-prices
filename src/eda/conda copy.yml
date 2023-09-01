@@ -5,11 +5,13 @@ channels:
   - defaults
 dependencies:
   - python=3.8
+  - jupyter #=3.0.12 #manual
+  - seaborn #=0.11.1
+  - pandas=1.2.3
+  # - pip=20.3.3
   - numpy<=1.19.5
-  - jupyter
-  - seaborn 
-  - ipykernel
-  - pandas
   - pandas-profiling
   - pyarrow
-  - wandb
+  - wandb 
+  # - pip:
+  #     - wandb==0.10.31
